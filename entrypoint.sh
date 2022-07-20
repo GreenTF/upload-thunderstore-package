@@ -9,7 +9,7 @@ else
   p="github/workspace"
 fi
 
-mkdir dist/
+mkdir "dist/"
 
 # Move the README if it exists
 if [ -e "$p/README.md" ]; then
@@ -52,6 +52,5 @@ else
   repo="thunderstore.io"
 fi
 
-tcli publish --repository "$repo" --file build/*.zip
-
-
+output=$(tcli publish --repository "$repo" --file build/*.zip)
+echo ${output}
