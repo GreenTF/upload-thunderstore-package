@@ -36,6 +36,10 @@ cd "/"
 echo "Init tcli config"
 tcli init --package-name ${TS_NAME} --package-namespace ${TS_NAMESPACE} --package-version ${TS_VERSION}
 
+if [ $? -ne 0 ]; then
+  exit $?
+fi
+
 echo "Set package community"
 sed -i "s/communities = \[\]/communities = \[ \"$TS_COMMUNITY\" \]/g" thunderstore.toml
 echo "Set package description"
@@ -48,6 +52,10 @@ cat thunderstore.toml
 
 tcli build
 
+if [ $? -ne 0 ]; then
+  exit $?
+fi
+
 if  [ -n "$TS_DEV" ]; then
   repo="https://thunderstore.dev"
 else
@@ -55,5 +63,5 @@ else
 fi
 
 echo "push to repo $repo"
-output=$(tcli publish --repository "$repo" --file build/*.zip)
-echo ${output}
+tcli publish --repository ${repo} --file build/*.zip
+exit $?

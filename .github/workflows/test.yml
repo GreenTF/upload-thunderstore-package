@@ -20,7 +20,22 @@ jobs:
           namespace: GreenTF
           description: Test
           dev: true
-          token: lmao
+          token: ${{ secrets.TS_KEY }}
           name: test
-          version: 0.1.0
+          version: ${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}
           community: Northstar
+
+  publish:
+    needs: test
+    if: github.event_name == "push"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          prelease: false
+        
+
+
+        
