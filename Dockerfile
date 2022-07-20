@@ -6,6 +6,6 @@ RUN "tar xvf tcli.tar.gz"
 RUN "sudo mv -v tcli-0.1.4-linux-x64/tcli /"
 FROM ubuntu 
 WORKDIR /
-COPY --from setup /tcli /bin/
+COPY --from=setup /tcli /bin/
 COPY ./entrypoint.sh entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
