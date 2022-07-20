@@ -26,6 +26,8 @@ inputs:
   token:
     description: 'Thunderstore API token'
     required: true
+   dev:
+    description: 'Push to thunderstore.dev rather then thunderstore.io'
 outputs:
   url:
     description: 'URL of uploaded mod'
@@ -42,3 +44,4 @@ runs:
     TS_ICON: ${{ inputs.icon }}
     TS_README: ${{ input.readme }}
     TS_PATH: ${{ inputs.path }}
+    TS_DEV: ${{ inputs.dev }}
