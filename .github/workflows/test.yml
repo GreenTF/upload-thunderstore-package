@@ -23,7 +23,7 @@ jobs:
           token: ${{ secrets.TS_KEY }}
           name: test
           version: ${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}
-          community: Northstar
+          community: northstar
 
   publish:
     needs: test
