@@ -35,14 +35,3 @@ outputs:
 runs:
   using: docker
   image: Dockerfile
-  args: 
-    - ${{inputs.token}}
-    - ${{inputs.community}}
-    - ${{inputs.namespace}}
-    - ${{inputs.name}}
-    - ${{inputs.version}}
-    - ${{inputs.description}}
-    - ${{inputs.icon}}
-    - ${{inputs.readme}}
-    - ${{inputs.path}}
-    
