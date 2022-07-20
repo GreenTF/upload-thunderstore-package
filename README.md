@@ -19,10 +19,10 @@ jobs:
       - uses: actions/checkout@v3
       - uses: GreenTF/upload-thunerstore-package@v0
         with:
-          namespace: GreenTF
-          description: Test
+          namespace: GreenTF # the thunderstore 'team' to publish under
+          description: Test 
           token: your-token
-          name: test
+          name: test # the name of the package
           version: $GITHUB_REF # Use the tag of the release as the package version
           community: Northstar
 ```
