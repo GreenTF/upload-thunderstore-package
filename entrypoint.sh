@@ -6,33 +6,35 @@ if [ -n "$TS_PATH" ]; then
   p=$(echo $TS_PATH | sed 's:$/*::') #trim any trailing '/'
 else
   echo "TS_PATH not set"
-  p="github/workspace"
+  p="."
 fi
 
 mkdir "dist/"
 
+# Move files to the dist directory for the tcli
+echo "Move files"
+mv $p/* dist/
+
 # Move the README if it exists
-if [ -e "$p/README.md" ]; then
+if [ -e "dist/README.md" ]; then
   echo "Move README"
-  mv "$p/README.md" "./"
+  mv "dist/README.md" "./"
 elif [ -n "$TS_README" ]; then
-  wget -O "./readme" "$ST_README"
+  wget -O "./README.md" "$ST_README"
 fi
 
-if [ -e "$p/icon.png" ]; then
+if [ -e "dist/icon.png" ]; then
   echo "Move icon"
-  mv "$p/icon.png" "./"
+  mv "dist/icon.png" "./"
 elif [ -n "$TS_ICON" ]; then
   wget -O "./icon.png" "$TS_ICON"
 fi
 
-# Move the remaining files to the dist directory for the tcli
-echo "Move files"
-mv $p/* dist/
+
 
 #tcli usage based off of https://github.com/R2Northstar/Northstar/blob/d8ad8f12f8bca1e8de96f5d7163f71997d487218/.github/workflows/build.yml#L132-L192
 echo "Init tcli config"
-tcli init "--package-name=\"$TS_NAME\" --package-namespace=\"$TS_NAMESPACE\" --package-version=\"$TS_VERSION\""
+tcli init "--package-name=$TS_NAME --package-namespace=$TS_NAMESPACE --package-version=$TS_VERSION
 
 echo "Set package community"
 sed -i "s/communities = \[\]/communities = \[ \"$TS_COMMUNITY\" \]/g" thunderstore.toml
