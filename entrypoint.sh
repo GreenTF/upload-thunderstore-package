@@ -9,28 +9,28 @@ else
   p="."
 fi
 
-mkdir "dist/"
+mkdir "/dist/"
 
 # Move files to the dist directory for the tcli
 echo "Move files"
-mv $p/* dist/
+mv $p/* /dist/
 
 # Move the README if it exists
-if [ -e "dist/README.md" ]; then
+if [ -e "/dist/README.md" ]; then
   echo "Move README"
-  mv "dist/README.md" "./"
+  mv "/dist/README.md" "/"
 elif [ -n "$TS_README" ]; then
-  wget -O "./README.md" "$ST_README"
+  wget -O "/README.md" "$ST_README"
 fi
 
-if [ -e "dist/icon.png" ]; then
+if [ -e "/dist/icon.png" ]; then
   echo "Move icon"
-  mv "dist/icon.png" "./"
+  mv "/dist/icon.png" "/"
 elif [ -n "$TS_ICON" ]; then
-  wget -O "./icon.png" "$TS_ICON"
+  wget -O "/icon.png" "$TS_ICON"
 fi
 
-
+cd "/"
 
 #tcli usage based off of https://github.com/R2Northstar/Northstar/blob/d8ad8f12f8bca1e8de96f5d7163f71997d487218/.github/workflows/build.yml#L132-L192
 echo "Init tcli config"
