@@ -42,6 +42,6 @@ runs:
     TS_VERSION: ${{ inputs.version }}
     TS_DESC: ${{ inputs.description }}
     TS_ICON: ${{ inputs.icon }}
-    TS_README: ${{ input.readme }}
+    TS_README: ${{ inputs.readme }}
     TS_PATH: ${{ inputs.path }}
     TS_DEV: ${{ inputs.dev }}
