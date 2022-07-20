@@ -34,7 +34,7 @@ cd "/"
 
 #tcli usage based off of https://github.com/R2Northstar/Northstar/blob/d8ad8f12f8bca1e8de96f5d7163f71997d487218/.github/workflows/build.yml#L132-L192
 echo "Init tcli config"
-tcli init "--package-name=$TS_NAME --package-namespace=$TS_NAMESPACE --package-version=$TS_VERSION
+tcli init "--package-name=$TS_NAME --package-namespace=$TS_NAMESPACE --package-version=$TS_VERSION"
 
 echo "Set package community"
 sed -i "s/communities = \[\]/communities = \[ \"$TS_COMMUNITY\" \]/g" thunderstore.toml
