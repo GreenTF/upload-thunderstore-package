@@ -26,7 +26,7 @@ inputs:
   token:
     description: 'Thunderstore API token'
     required: true
-   dev:
+  dev:
     description: 'Push to thunderstore.dev rather then thunderstore.io'
 outputs:
   url:
