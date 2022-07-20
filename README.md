@@ -4,7 +4,7 @@ Github action that uses the thunderstore CLI to upload a package to thunderstore
 ## Usage 
 
 ```yml
-name: 
+name: Publish Mod
 
 # Run when a new release is... released
 on: 
