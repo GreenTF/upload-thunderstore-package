@@ -6,22 +6,16 @@ Github action that uses the thunderstore CLI to upload a package to thunderstore
 ```yml
 name: 
 
-# Controls when the workflow will run
-on:
-  push:
-    branches:
-      - 'releases/**' # run when a new release is created
+# Run when a new release is... released
+on: 
+  release:
+    types: [published]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   publish:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Use checkout to publish the files in your repo
       - uses: actions/checkout@v3
       - uses: GreenTF/upload-thunerstore-package@v0
         with:
@@ -29,6 +23,6 @@ jobs:
           description: Test
           token: your-token
           name: test
-          version: 0.1.0
+          version: $GITHUB_REF # Use the tag of the release as the package version
           community: Northstar
 ```
