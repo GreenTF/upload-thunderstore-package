@@ -15,14 +15,14 @@ mkdir "dist/"
 if [ -e "$p/README.md" ]; then
   echo "Move README"
   mv "$p/README.md" "./"
-else if [ -n "$TS_README" ]; then
+elif [ -n "$TS_README" ]; then
   wget -O "./readme" "$ST_README"
 fi
 
 if [ -e "$p/icon.png" ]; then
   echo "Move icon"
   mv "$p/icon.png" "./"
-else if [ -n "$TS_ICON" ]; then
+elif [ -n "$TS_ICON" ]; then
   wget -O "./icon.png" "$TS_ICON"
 fi
 
