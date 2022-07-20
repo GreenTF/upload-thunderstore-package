@@ -35,7 +35,7 @@ runs:
   using: docker
   image: Dockerfile
   env: 
-    TS_TOKEN: ${{ inputs.token }}
+    TCLI_AUTH_TOKEN: ${{ inputs.token }}
     TS_COMMUNITY: ${{ inputs.community }}
     TS_NAMESPACE: ${{ inputs.namespace }}
     TS_NAME: ${{ inputs.name }}
