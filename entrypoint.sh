@@ -49,9 +49,9 @@ cat thunderstore.toml
 tcli build
 
 if  [ -n "$TS_DEV" ]; then
-  repo="thunderstore.dev"
+  repo="https://thunderstore.dev"
 else
-  repo="thunderstore.io"
+  repo="https://thunderstore.io"
 fi
 
 echo "push to repo $repo"
