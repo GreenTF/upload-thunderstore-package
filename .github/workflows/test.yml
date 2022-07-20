@@ -7,6 +7,9 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
+  
+
 
 jobs:
   test:
@@ -25,16 +28,16 @@ jobs:
           version: ${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}
           community: test # needs to be test for thunderstore.dev
 
-  publish:
-    needs: test
-    if: github.event_name == 'push'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Create Release
-        uses: marvinpinto/action-automatic-releases@latest
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          prelease: false
+  # publish:
+  #   needs: test
+  #   if: github.event_name == 'push'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Create Release
+  #       uses: marvinpinto/action-automatic-releases@latest
+  #       with:
+  #         repo_token: ${{ secrets.GITHUB_TOKEN }}
+  #         prelease: false
         
 
 
