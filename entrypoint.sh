@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function setup() {
-  set -x
+  set -e
   echo "::group::Set up environment"
 
   # If the TS_PATH var is set and not empty
@@ -40,7 +40,7 @@ function setup() {
 
 }
 function configure(){
-  set -x
+  set -e
   cd "/"
 
   echo "::group::Configure tcli"
@@ -68,7 +68,6 @@ function configure(){
 
 
 function publish() {
-  set -x
   if [ -n "$TS_DEV" ]; then
     repo="https://thunderstore.dev"
   else
