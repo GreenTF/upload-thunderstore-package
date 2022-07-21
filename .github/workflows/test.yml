@@ -18,7 +18,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: ./
+      - id: pub
+        uses: ./
         with:
           namespace: GreenTF
           description: Test
@@ -27,6 +28,8 @@ jobs:
           name: test
           version: 0.${{ github.run_number }}.${{ github.run_attempt }}
           community: test # needs to be test for thunderstore.dev
+      - run: echo ${{ steps.pub.url }}
+      
 
   # publish:
   #   needs: test

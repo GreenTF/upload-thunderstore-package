@@ -62,6 +62,7 @@ echo "Remove example dependency" #TODO: Support dependencies
 sed -i "s/Example-Dependency = \"1.0.0\"//g" thunderstore.toml
 
 echo "Done config edit"
+echo
 echo "::debug::$(cat thunderstore.toml)"
 echo "::endgroup::"
 
@@ -74,6 +75,7 @@ fi
 
 echo "Publish to $repo"
 out=$(tcli publish --repository ${repo} --file build/*.zip)
+echo
 echo $out
 echo "::set-output name=url::$(grep https:\/\/(?:\w*\.)?thunderstore\.(?:\w+)\/package\/download\/(?:\w+)\/(?:\w+)\/\d+\.\d+\.\d\/? $out)"
 
