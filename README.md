@@ -8,7 +8,7 @@ Github action that uses the thunderstore CLI to upload a package to thunderstore
   !!!IMPORTANT!!!<br>DON'T PUT YOUR TOKEN IN THE WORKFLOW FILE. DOING SO WILL ALLOW ANYONE TO UPLOAD ANY MODS UNDER YOUR NAME! 
  </h3> 
 
-<p align="center">⚠️ Add it to your repo secrets and access it in the workflow with `${{ secrets.YOUR_TOKEN_NAME }}` ⚠️</p>
+<p align="center">⚠️ Add it to your repo secrets and access it in the workflow with <code>${{ secrets.YOUR_TOKEN_NAME }}</code> ⚠️</p>
 
 ```yml
 name: Publish Mod
@@ -28,7 +28,7 @@ jobs:
         with:
           namespace: GreenTF # the thunderstore 'team' to publish under
           description: Test 
-          token: ${{ secrets.your-token }}
+          token: ${{ secrets.YOUR_TOKEN_NAME }}
           name: test # the name of the package
           version: $GITHUB_REF # Use the tag of the release as the package version
           community: Northstar
@@ -37,7 +37,7 @@ jobs:
 ## Inputs
 | Input | Description | Required |
 |-------|-------------|----------|
-| `token` | Service account token from Thunderstore. | `true` |
+| `token` | Service account token from Thunderstore. Should be saved as a repo secret and accessed with `${{ secrets.YOUR_TOKEN_NAME }}` | `true` |
 | `community` | Thunderstore community to publish to. | `true` |
 | `namespace` | Name of the team to publish under. | `true` |
 | `name` | Name of the package. | `true` |
