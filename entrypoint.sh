@@ -1,7 +1,6 @@
 #!/bin/bash
 
 function setup() {
-  set -e
   echo "::group::Set up environment"
 
   # If the TS_PATH var is set and not empty
@@ -36,11 +35,12 @@ function setup() {
     wget -O "/icon.png" "$TS_ICON"
   fi
 
+
+
   echo "::endgroup::"
 
 }
 function configure(){
-  set -e
   cd "/"
 
   echo "::group::Configure tcli"
@@ -78,7 +78,8 @@ function publish() {
   echo "Publish to $repo"
   out=$(tcli publish --repository ${repo} --file build/*.zip) #capture the output to get the URL
   # A bad response from the server doesn't exit with a non-zero status code
-  if [[ ${out} =~ .*ERROR:.* ]]; then
+  if [[ $? -ne 0 ]]; then
+    echo "::error::$(echo ${out} | grep -Eo ERROR:.*)"
     exit 1
   fi
   echo "::set-output name=url::$(echo ${out} | grep -Eo "https.*")"
@@ -86,8 +87,10 @@ function publish() {
   echo "::endgroup::"
 }
 
+set -e
 setup
 configure
+set +e # Turn this off so we can see the output from tcli publish
 publish
 
 
