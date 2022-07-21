@@ -77,7 +77,7 @@ echo "Publish to $repo"
 out=$(tcli publish --repository ${repo} --file build/*.zip)
 echo
 echo $out
-echo "::set-output name=url::$(grep https:\/\/(?:\w*\.)?thunderstore\.(?:\w+)\/package\/download\/(?:\w+)\/(?:\w+)\/\d+\.\d+\.\d\/? $out)"
+echo "::set-output name=url::$(grep "https:\/\/(?:\w*\.)?thunderstore\.(?:\w+)\/package\/download\/(?:\w+)\/(?:\w+)\/\d+\.\d+\.\d\/?" ${out})"
 
 if [ $? -ne 0 ]; then
   exit $?
