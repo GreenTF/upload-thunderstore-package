@@ -47,5 +47,6 @@ jobs:
 | `icon` | URL to download the icon from. Will try to find `icon.png` in the root of the repo if not provided. | `false` |
 | `readme` | URL to download the readme from. Will try to fine `README.md` in the root of the repo if not provided. | `false` |
 | `dev` | Publish to https://thunderstore.dev if set, https://thunderstore.io if not set. | `false` |
+| `wrap` | Directory to wrap the contents of the repo in. By default the contents of the root of the repo will be in the root of the package. | `false` |
 
 
