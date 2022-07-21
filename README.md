@@ -24,7 +24,7 @@ jobs:
     steps:
       # Use checkout to publish the files in your repo
       - uses: actions/checkout@v3
-      - uses: GreenTF/upload-thunerstore-package@v0.4
+      - uses: GreenTF/upload-thunerstore-package@v1
         with:
           namespace: GreenTF # the thunderstore 'team' to publish under
           description: Test 
