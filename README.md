@@ -49,4 +49,8 @@ jobs:
 | `dev` | Publish to https://thunderstore.dev if set, https://thunderstore.io if not set. | `false` |
 | `wrap` | Directory to wrap the contents of the repo in. By default the contents of the root of the repo will be in the root of the package. | `false` |
 
+## Outputs
+| Output | Description |
+|--------|-------------|
+| `url` | The download URL of the published package |
 
