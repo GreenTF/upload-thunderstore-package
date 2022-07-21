@@ -2,9 +2,13 @@
 Github action that uses the thunderstore CLI to upload a package to thunderstore
 
 ## Usage 
+<h3 align="center"> 
+  <img src="https://thumbs.gfycat.com/UniqueSizzlingFinwhale-max-1mb.gif" alt="warning sign" width="10%" />
+  <br>
+  !!!IMPORTANT!!!<br>DON'T PUT YOUR TOKEN IN THE WORKFLOW FILE. DOING SO WILL ALLOW ANYONE TO UPLOAD ANY MODS UNDER YOUR NAME! 
+ </h3> 
 
-#### IMPORTANT!!! DON'T PUT YOUR TOKEN IN THE WORKFLOW FILE. 
-Add it to your repo secrets and access it in the workflow with `${{ secrets.YOUR_TOKEN_NAME }}`
+<p align="center">⚠️ Add it to your repo secrets and access it in the workflow with `${{ secrets.YOUR_TOKEN_NAME }}` ⚠️</p>
 
 ```yml
 name: Publish Mod
