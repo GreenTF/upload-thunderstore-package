@@ -1,7 +1,8 @@
 name: 'Upload Thunderstore Package'
 description: 'Formats and uploads a Thunderstore package'
-icon: package
-color: green
+author: 'AnActualEmerald'
+icon: 'package'
+color: 'green'
 inputs:
   path: 
     descritpion: 'Path to the files of the mod. Uses the contents of the repo if not set'
