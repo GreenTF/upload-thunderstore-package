@@ -28,6 +28,8 @@ inputs:
     required: true
   dev:
     description: 'Push to thunderstore.dev rather then thunderstore.io'
+  wrap:
+    description: 'Directory to wrap the contents of the repo in'
 outputs:
   url:
     description: 'URL of uploaded mod'
@@ -45,3 +47,4 @@ runs:
     TS_README: ${{ inputs.readme }}
     TS_PATH: ${{ inputs.path }}
     TS_DEV: ${{ inputs.dev }}
+    TS_WRAP: ${{ inputs.wrap }}
