@@ -28,7 +28,7 @@ jobs:
           name: test
           version: 0.${{ github.run_number }}.${{ github.run_attempt }}
           community: test # needs to be test for thunderstore.dev
-      - run: echo ${{ steps.pub.url }}
+      - run: echo ${{ steps.pub.outputs.url }}
       
 
   # publish:
