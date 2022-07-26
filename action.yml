@@ -27,6 +27,8 @@ inputs:
     description: 'Description of the mod'
     required: true
     default: 'Example mod description'
+  homepage:
+    description: 'Homepage to display on Thunderstore. Defaults to the repo URL'
   token:
     description: 'Thunderstore API token'
     required: true
@@ -38,8 +40,8 @@ outputs:
   url:
     description: 'URL of uploaded mod'
 runs:
-  using: docker
-  image: Dockerfile
+  using: node16
+  main: 'dist/index.js'
   env: 
     TCLI_AUTH_TOKEN: ${{ inputs.token }}
     TS_COMMUNITY: ${{ inputs.community }}
