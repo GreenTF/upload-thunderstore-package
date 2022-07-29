@@ -18,17 +18,18 @@ const platform = process.env.RUNNER_OS.toLowerCase();
 // May be moved to a separate action in the future idk
 async function setup() {
   try {
-
+    exec("ls -la", (err, stdout, stderr) => console.log(stdout));
+    core.startGroup("Set up tcli");
     const download_url = `https://github.com/thunderstore-io/thunderstore-cli/releases/download/0.1.4/tcli-0.1.4-${download_ext[platform]}`;
     core.info(`Downloading from ${download_url}`);
     const download = await tc.downloadTool(download_url);
     
     const extract = download_url.endsWith('.zip') ? tc.extractZip : tc.extractTar;
-    const extracted_path = await extract(download, '/bin');
+    const extracted_path = await extract(download, './');
     
     //TODO: Add tool caching
     core.addPath(path.join(extracted_path, `tcli${platform === "windows" ? ".exe" : ""}`));
-    
+    core.endGroup();
   }catch(e) {
     core.setFailed(e);
   }
@@ -46,7 +47,7 @@ async function main() {
   }
 
   const wrap = core.getInput('wrap');
-  const target = core.toPlatformPath(path.join('/dist', wrap ? wrap : ''));
+  const target = core.toPlatformPath(path.join('./dist', wrap ? wrap : ''));
 
   //Create the dist directory
   fs.mkdir(target, {recursive: true});
@@ -123,6 +124,5 @@ async function donwloadFile(url, name) {
 
 if (require.main === module) {
   //Idk if github actions have top level await or not
-  setup().then();
-  main().then(() => core.info("Done!"));
+  setup().then(main);
 }
