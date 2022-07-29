@@ -42,15 +42,3 @@ outputs:
 runs:
   using: node16
   main: 'dist/index.js'
-  env: 
-    TCLI_AUTH_TOKEN: ${{ inputs.token }}
-    TS_COMMUNITY: ${{ inputs.community }}
-    TS_NAMESPACE: ${{ inputs.namespace }}
-    TS_NAME: ${{ inputs.name }}
-    TS_VERSION: ${{ inputs.version }}
-    TS_DESC: ${{ inputs.description }}
-    TS_ICON: ${{ inputs.icon }}
-    TS_README: ${{ inputs.readme }}
-    TS_PATH: ${{ inputs.path }}
-    TS_DEV: ${{ inputs.dev }}
-    TS_WRAP: ${{ inputs.wrap }}
