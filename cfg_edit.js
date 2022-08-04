@@ -9,7 +9,7 @@ await TOML.default();
 const tstore = TOML.parse(await Deno.readTextFile("./thunderstore.toml"));
 
 const name = Deno.env.get("TS_NAME");
-const version = Deno.env.get("TS_VERSION");
+const version = Deno.env.get("TS_VERSION").replace(/v/g, '');
 const desc = Deno.env.get("TS_DESCRIPTION");
 const homepage = Deno.env.get("TS_WEBSITE");
 const categories = Deno.env.get("TS_CATEGORIES").replace(/\n/g, '');
