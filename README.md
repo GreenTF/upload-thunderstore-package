@@ -36,7 +36,7 @@ jobs:
 
 ## Getting a Thunderstore token
 
-### TODO
+Check the wiki [here](https://github.com/GreenTF/upload-thunderstore-package/wiki#where-to-get-your-thunderstore-token)
 
 
 ## Inputs
