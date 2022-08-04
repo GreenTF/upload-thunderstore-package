@@ -16,6 +16,7 @@ const categories = Deno.env.get("TS_CATEGORIES").replace(/\n/g, '');
 const deps = Deno.env.get("TS_DEPS").replace(/\n/g, ' ');
 const community = Deno.env.get("TS_COMMUNITY");
 const nsfw = Deno.env.get("TS_NSFW");
+const wrap = Deno.env.get("TS_WRAP");
 
 console.log(deps)
 
@@ -25,7 +26,10 @@ tstore.package.versionNumber = version;
 tstore.package.description = desc;
 
 tstore.publish.communities = [community];
+tstore.build.copy[0].target = wrap;
 tstore.package.dependencies = {};
+
+console.log(tstore.build);
 
 //check for optional inputs
 if (homepage && homepage !== "") {

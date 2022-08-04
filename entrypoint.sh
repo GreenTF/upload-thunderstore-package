@@ -12,11 +12,11 @@ function setup() {
     p="."
   fi
 
-  mkdir -p "/dist/$TS_WRAP"
+  mkdir -p "/dist"
 
   # Move files to the dist directory for the tcli
   echo "Move files from $p to /dist"
-  mv $p/* /dist/$TS_WRAP
+  mv $p/* /dist
 
   # Move the README if it exists
   if [ -e "/dist/README.md" ]; then
