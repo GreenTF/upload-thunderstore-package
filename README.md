@@ -24,13 +24,13 @@ jobs:
     steps:
       # Use checkout to publish the files in your repo
       - uses: actions/checkout@v3
-      - uses: GreenTF/upload-thunerstore-package@v1
+      - uses: GreenTF/upload-thunderstore-package@v2.1
         with:
           namespace: GreenTF # the thunderstore 'team' to publish under
           description: Test 
           token: ${{ secrets.YOUR_TOKEN_NAME }}
           name: test # the name of the package
-          version: $GITHUB_REF # Use the tag of the release as the package version
+          version: $GITHUB_REF_NAME # Use the tag as the package version
           community: Northstar
 ```
 
