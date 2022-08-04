@@ -55,6 +55,7 @@ Check the wiki [here](https://github.com/GreenTF/upload-thunderstore-package/wik
 | `wrap` | Directory to wrap the contents of the repo in. By default the contents of the root of the repo will be in the root of the package. | `false` |
 | `categories` | A list, separated by spaces of categories to give to the mod when published. These must be available in the community you're publishing to. | `false` |
 | `deps` | A list, separated by spaces, of mods this mod depends on. Must be in `namespace-modname@1.2.3` format. The publish will fail if any of these aren't a real package. | `false` |
+| `website` | The homepage URL for the mod. Defaults to the github repo URL. | `false`
 | `nsfw` | Set this to mark the mod as NSFW | `false` | 
 
 ## Outputs
