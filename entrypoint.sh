@@ -52,13 +52,15 @@ function configure(){
   if  [ -n "$TS_DEV" ]; then
     TS_COMMUNITY="test"
   fi
+  
+  echo $(deno run --allow-net --allow-env --allow-read --allow-write cfg_edit.js)
 
-  echo "Set package community"
-  sed -i "s/communities = \[\]/communities = \[ \"$TS_COMMUNITY\" \]/g" thunderstore.toml
-  echo "Set package description"
-  sed -i "s/description = \"Example mod description\"/description = \"$TS_DESC\"/g" thunderstore.toml
-  echo "Remove example dependency" #TODO: Support dependencies
-  sed -i "s/Example-Dependency = \"1.0.0\"//g" thunderstore.toml
+  # echo "Set package community"
+  # sed -i "s/communities = \[\]/communities = \[ \"$TS_COMMUNITY\" \]/g" thunderstore.toml
+  # echo "Set package description"
+  # sed -i "s/description = \"Example mod description\"/description = \"$TS_DESC\"/g" thunderstore.toml
+  # echo "Remove example dependency" #TODO: Support dependencies
+  # sed -i "s/Example-Dependency = \"1.0.0\"//g" thunderstore.toml
 
   echo "Done config edit"
   echo

@@ -34,6 +34,14 @@ inputs:
     description: 'Push to thunderstore.dev rather then thunderstore.io'
   wrap:
     description: 'Directory to wrap the contents of the repo in'
+  website:
+    description: 'Homepage URL'
+  categories:
+    description: 'Categories the mod belongs to'
+  deps: 
+    description: 'List of dependencies by name & version'
+  nsfw:
+    description: 'Is the mod NSFW'
 outputs:
   url:
     description: 'URL of uploaded mod'
@@ -52,3 +60,7 @@ runs:
     TS_PATH: ${{ inputs.path }}
     TS_DEV: ${{ inputs.dev }}
     TS_WRAP: ${{ inputs.wrap }}
+    TS_WEBSITE: ${{ inputs.website }}
+    TS_CATEGORIES: ${{ inputs.categories }}
+    TS_DEPS: ${{ inputs.deps }}
+    TS_NSFW: ${{ inputs.nsfw }}
