@@ -18,7 +18,6 @@ const community = Deno.env.get("TS_COMMUNITY");
 const nsfw = Deno.env.get("TS_NSFW");
 const wrap = Deno.env.get("TS_WRAP");
 
-console.log(deps)
 
 //these should be set already but we're rewriting the whole file anyways
 tstore.package.name = name;
@@ -29,11 +28,12 @@ tstore.publish.communities = [community];
 tstore.build.copy[0].target = wrap;
 tstore.package.dependencies = {};
 
-console.log(tstore.build);
 
 //check for optional inputs
 if (homepage && homepage !== "") {
   tstore.package.websiteUrl = homepage;
+} else {
+  tstore.package.websiteUrl = `${Deno.env.get("GITHUB_SERVER_URL")}/${Deno.env.get("GITHUB_REPOSITORY")}`;
 }
 
 if (nsfw && nsfw !== "" ) {
@@ -62,10 +62,6 @@ if (deps && deps !== "") {
   console.log(p);
   tstore.package.dependencies = p;
 }
-
-
-
-
 
 
 //write config file back to disk
