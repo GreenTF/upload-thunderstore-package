@@ -34,6 +34,11 @@ jobs:
           community: Northstar
 ```
 
+## Getting a Thunderstore token
+
+### TODO
+
+
 ## Inputs
 | Input | Description | Required |
 |-------|-------------|----------|
@@ -48,6 +53,9 @@ jobs:
 | `readme` | URL to download the readme from. Will try to fine `README.md` in the root of the repo if not provided. | `false` |
 | `dev` | Publish to https://thunderstore.dev if set, https://thunderstore.io if not set. | `false` |
 | `wrap` | Directory to wrap the contents of the repo in. By default the contents of the root of the repo will be in the root of the package. | `false` |
+| `categories` | A list, separated by spaces of categories to give to the mod when published. These must be available in the community you're publishing to. | `false` |
+| `deps` | A list, separated by spaces, of mods this mod depends on. Must be in `namespace-modname@1.2.3` format. The publish will fail if any of these aren't a real package. | `false` |
+| `nsfw` | Set this to mark the mod as NSFW | `false` | 
 
 ## Outputs
 | Output | Description |
