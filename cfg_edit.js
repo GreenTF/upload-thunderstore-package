@@ -1,0 +1,72 @@
+import * as TOML from "https://unpkg.com/@aduh95/toml@0.4.2/web/toml2js.js";
+
+//init toml parser for some reason idk there was no Deno native module
+await TOML.default();
+
+
+
+//Read in thunderstore.toml
+const tstore = TOML.parse(await Deno.readTextFile("./thunderstore.toml"));
+
+const name = Deno.env.get("TS_NAME");
+const version = Deno.env.get("TS_VERSION");
+const desc = Deno.env.get("TS_DESCRIPTION");
+const homepage = Deno.env.get("TS_WEBSITE");
+const categories = Deno.env.get("TS_CATEGORIES").replace(/\n/g, '');
+const deps = Deno.env.get("TS_DEPS").replace(/\n/g, ' ');
+const community = Deno.env.get("TS_COMMUNITY");
+const nsfw = Deno.env.get("TS_NSFW");
+const wrap = Deno.env.get("TS_WRAP");
+
+console.log(deps)
+
+//these should be set already but we're rewriting the whole file anyways
+tstore.package.name = name;
+tstore.package.versionNumber = version;
+tstore.package.description = desc;
+
+tstore.publish.communities = [community];
+tstore.build.copy[0].target = wrap;
+tstore.package.dependencies = {};
+
+console.log(tstore.build);
+
+//check for optional inputs
+if (homepage && homepage !== "") {
+  tstore.package.websiteUrl = homepage;
+}
+
+if (nsfw && nsfw !== "" ) {
+  tstore.package.containsNsfwContent = true
+}
+
+if (categories && categories !== "") {
+  //only keep truthy elements from the split
+  tstore.publish.categories = categories.split(' ').filter(e => e).map(e=> e.toLowerCase());
+}
+
+if (deps && deps !== "") {
+  const p = {};
+  for (let d of deps.split(' ')) {
+    if(!d)
+      continue;
+    if (!d.includes('@')) {
+      console.log("Malformed dependency at ", d);
+      Deno.exit(-1);
+    }
+    
+    const parts = d.split('@');
+    p[parts[0]] = parts[1];
+  }
+  
+  console.log(p);
+  tstore.package.dependencies = p;
+}
+
+
+
+
+
+
+//write config file back to disk
+Deno.writeTextFile("./thunderstore.toml", TOML.stringify(tstore));
