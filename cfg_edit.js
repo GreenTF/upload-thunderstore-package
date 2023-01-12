@@ -1,10 +1,5 @@
 import * as TOML from "npm:@aduh95/toml@0.4.2";
 
-//init toml parser for some reason idk there was no Deno native module
-await TOML.default();
-
-
-
 //Read in thunderstore.toml
 const tstore = TOML.parse(await Deno.readTextFile("./thunderstore.toml"));
 
