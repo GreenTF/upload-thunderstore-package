@@ -8,4 +8,5 @@ RUN ["mv", "-v", "tcli-0.1.4-linux-x64/tcli", "/bin/tcli"]
 COPY ./entrypoint.sh /entrypoint.sh
 COPY ./cfg_edit.js /cfg_edit.js
 RUN ["chmod", "+x", "/entrypoint.sh"]
+RUN ["deno",  "cache", "/cfg_edit.js"]
 ENTRYPOINT ["/entrypoint.sh"]

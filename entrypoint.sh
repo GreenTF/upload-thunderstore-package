@@ -73,7 +73,7 @@ function publish() {
   if [ -n "$TS_FILE" ]; then
     echo "::group::Publish package"
     echo "Publish to $repo"
-    file="$TS_FILE"
+    file="./$TS_FILE"
   else
     echo "::group::Build and publish"
     tcli build
