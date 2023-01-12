@@ -32,6 +32,7 @@ jobs:
           website: "https://greenboi.me"
           categories: "mods maps tools items"
       - run: echo ${{ steps.pub.outputs.url }}
+      - uses: actions/checkout@v3
       - id: pub_prebuilt
         uses: ./
         with:
