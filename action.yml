@@ -42,6 +42,8 @@ inputs:
     description: 'List of dependencies by name & version'
   nsfw:
     description: 'Is the mod NSFW'
+  file:
+    description: 'Prebuilt .zip file to use, relative to the repo root'
 outputs:
   url:
     description: 'URL of uploaded mod'
@@ -64,3 +66,4 @@ runs:
     TS_CATEGORIES: ${{ inputs.categories }}
     TS_DEPS: ${{ inputs.deps }}
     TS_NSFW: ${{ inputs.nsfw }}
+    TS_FILE: ${{ inputes.file }}

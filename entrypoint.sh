@@ -68,10 +68,20 @@ function publish() {
   else
     repo="https://thunderstore.io"
   fi
-  echo "::group::Build and publish"
-  tcli build
-  echo "Publish to $repo"
-  out=$(tcli publish --repository ${repo} --file build/*.zip) #capture the output to get the URL
+
+  # skip the build if there is a prebuilt package provided
+  if [ -n "$TS_FILE" ]; then
+    echo "::group::Build and publish"
+    tcli build
+    echo "Publish to $repo"
+    file="build/*.zip"
+  else
+    echo "::group::Publish package"
+    echo "Publish to $repo"
+    file="$TS_FILE"
+  fi
+
+  out=$(tcli publish --repository ${repo} --file ${file}) #capture the output to get the URL
   # A bad response from the server doesn't exit with a non-zero status code
   if [[ $? -ne 0 ]]; then
     echo "::error::$(echo ${out} | grep -Eo ERROR:.*)"
