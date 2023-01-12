@@ -32,6 +32,20 @@ jobs:
           website: "https://greenboi.me"
           categories: "mods maps tools items"
       - run: echo ${{ steps.pub.outputs.url }}
+      - id: pub_prebuilt
+        uses: ./
+        with:
+          namespace: GreenTF
+          description: Test
+          dev: true
+          token: ${{ secrets.TS_KEY }}
+          name: test
+          version: 0.${{ github.run_number }}.1
+          community: test # needs to be test for thunderstore.dev
+          file: test_zip.zip
+
+          
+      
       
 
   # publish:
