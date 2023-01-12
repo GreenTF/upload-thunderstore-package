@@ -1,4 +1,4 @@
-import * as TOML from "https://unpkg.com/@aduh95/toml@0.4.2/web/toml2js.js";
+import * as TOML from "npm:@aduh95/toml@0.4.2";
 
 //init toml parser for some reason idk there was no Deno native module
 await TOML.default();
