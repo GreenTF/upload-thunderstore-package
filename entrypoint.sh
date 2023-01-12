@@ -87,7 +87,7 @@ function publish() {
     echo "::error::$(echo ${out} | grep -Eo ERROR:.*)"
     exit 1
   fi
-  echo "name=url::$(echo ${out} | grep -Eo "https.*")" >> $GITHUB_OUTPUT
+  echo "url=$(echo ${out} | grep -Eo "https.*")" >> $GITHUB_OUTPUT
   echo "Done!"
   echo "::endgroup::"
 }
