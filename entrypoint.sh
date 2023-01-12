@@ -71,14 +71,14 @@ function publish() {
 
   # skip the build if there is a prebuilt package provided
   if [ -n "$TS_FILE" ]; then
+    echo "::group::Publish package"
+    echo "Publish to $repo"
+    file="$TS_FILE"
+  else
     echo "::group::Build and publish"
     tcli build
     echo "Publish to $repo"
     file="build/*.zip"
-  else
-    echo "::group::Publish package"
-    echo "Publish to $repo"
-    file="$TS_FILE"
   fi
 
   out=$(tcli publish --repository ${repo} --file ${file}) #capture the output to get the URL
