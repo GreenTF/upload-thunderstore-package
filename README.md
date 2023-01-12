@@ -48,9 +48,10 @@ Check the wiki [here](https://github.com/GreenTF/upload-thunderstore-package/wik
 | `name` | Name of the package. | `true` |
 | `description` | Description of the package that will appear on Thunderstore. | `true` |
 | `version` | Package version in SemVer format. | `true` |
+| `file` | Path to a prebuilt zip file. Will skip the build step if provided. | `false` |
 | `path` | Path of the files to package. Useful when using build artifacts from other steps. Defaults to using the contents of the repo. | `false` |
 | `icon` | URL to download the icon from. Will try to find `icon.png` in the root of the repo if not provided. | `false` |
-| `readme` | URL to download the readme from. Will try to fine `README.md` in the root of the repo if not provided. | `false` |
+| `readme` | URL to download the readme from. Will try to find `README.md` in the root of the repo if not provided. | `false` |
 | `dev` | Publish to https://thunderstore.dev if set, https://thunderstore.io if not set. | `false` |
 | `wrap` | Directory to wrap the contents of the repo in. By default the contents of the root of the repo will be in the root of the package. | `false` |
 | `categories` | A list, separated by spaces of categories to give to the mod when published. These must be available in the community you're publishing to. | `false` |
