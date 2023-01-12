@@ -66,4 +66,4 @@ runs:
     TS_CATEGORIES: ${{ inputs.categories }}
     TS_DEPS: ${{ inputs.deps }}
     TS_NSFW: ${{ inputs.nsfw }}
-    TS_FILE: ${{ inputes.file }}
+    TS_FILE: ${{ inputs.file }}
