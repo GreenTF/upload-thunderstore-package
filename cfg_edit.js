@@ -3,6 +3,7 @@ import * as TOML from "npm:@aduh95/toml@0.4.2";
 //Read in thunderstore.toml
 const tstore = TOML.parse(await Deno.readTextFile("./thunderstore.toml"));
 
+const namespace = Deno.env.get("TS_NAMESPACE");
 const name = Deno.env.get("TS_NAME");
 const version = Deno.env.get("TS_VERSION").replace(/v/g, '');
 const desc = Deno.env.get("TS_DESC");
@@ -15,6 +16,7 @@ const wrap = Deno.env.get("TS_WRAP");
 
 
 //these should be set already but we're rewriting the whole file anyways
+tstore.package.namespace = namespace;
 tstore.package.name = name;
 tstore.package.versionNumber = version;
 tstore.package.description = desc;
