@@ -33,13 +33,13 @@ if (homepage && homepage !== "") {
   tstore.package.websiteUrl = `${Deno.env.get("GITHUB_SERVER_URL")}/${Deno.env.get("GITHUB_REPOSITORY")}`;
 }
 
-if (nsfw && nsfw !== "" ) {
+if (nsfw && nsfw === "true" ) {
   tstore.package.containsNsfwContent = true
 }
 
 if (categories && categories !== "") {
   //only keep truthy elements from the split
-  tstore.publish.categories = categories.split(' ').filter(e => e).map(e=> e.toLowerCase());
+  tstore.publish.categories = categories.split('\n').filter(e => e).map(e=> e.toLowerCase());
 }
 
 if (deps && deps !== "") {
