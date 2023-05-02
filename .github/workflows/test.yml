@@ -54,6 +54,7 @@ jobs:
           dev: true
           token: ${{ secrets.TS_KEY }}
           file: test_zip.zip
+          categories: mods, maps
           
       
       

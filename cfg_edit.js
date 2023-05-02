@@ -41,7 +41,7 @@ if (categories && categories !== "") {
   console.log(`::debug::Parsing categories: ${categories}`);
   tstore.publish.categories = categories.split(',')
     .filter(e => e) //only keep truthy elements
-    .map(e=> e.toLowerCase());
+    .map(e=> e.toLowerCase().trim());
 }
 
 if (deps && deps !== "") {
