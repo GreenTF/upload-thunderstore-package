@@ -37,6 +37,12 @@ jobs:
             tools
             items
       - run: echo ${{ steps.pub.outputs.url }}
+      - id: pub-prebuilt
+        uses: ./
+        with:
+          dev: true
+          token: ${{ secrets.TS_KEY }}
+          file: test_zip.zip
           
       
       

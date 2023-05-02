@@ -9,23 +9,18 @@ inputs:
     descritpion: 'Path to the files of the mod. Uses the contents of the repo if not set'
   community:
     description: 'Thunderstore community to publish to'
-    required: true
   namespace:
     description: 'Name of the team to publish the mod under'
-    required: true
   name:
     description: 'Name of the package'
-    required: true
   version:
     description: 'Package version to publish'
-    required: true
   icon:
     description: 'URL of the mod icon'
   readme:
     description: 'URL of the mod README'
   description:
     description: 'Description of the mod'
-    required: true
     default: 'Example mod description'
   token:
     description: 'Thunderstore API token'
