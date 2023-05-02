@@ -49,7 +49,7 @@ outputs:
     description: 'URL of uploaded mod'
 runs:
   using: docker
-  image: docker://ghcr.io/greentf/utp:latest
+  image: 'Dockerfile'
   env: 
     TCLI_AUTH_TOKEN: ${{ inputs.token }}
     TS_COMMUNITY: ${{ inputs.community }}

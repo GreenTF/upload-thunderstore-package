@@ -6,9 +6,9 @@ const tstore = TOML.parse(await Deno.readTextFile("./thunderstore.toml"));
 const namespace = Deno.env.get("TS_NAMESPACE");
 const name = Deno.env.get("TS_NAME");
 const version = Deno.env.get("TS_VERSION").replace(/v/g, '');
-const desc = Deno.env.get("TS_DESC");
+const desc = Deno.env.get("TS_DESC").substring(0, 256); //truncate overlong descriptions
 const homepage = Deno.env.get("TS_WEBSITE");
-const categories = Deno.env.get("TS_CATEGORIES").replace(/\n/g, '');
+const categories = Deno.env.get("TS_CATEGORIES").replace(/\n/g, ','); //support comma and new-line delimiters
 const deps = Deno.env.get("TS_DEPS").replace(/\n/g, ' ');
 const community = Deno.env.get("TS_COMMUNITY");
 const nsfw = Deno.env.get("TS_NSFW");
@@ -33,13 +33,15 @@ if (homepage && homepage !== "") {
   tstore.package.websiteUrl = `${Deno.env.get("GITHUB_SERVER_URL")}/${Deno.env.get("GITHUB_REPOSITORY")}`;
 }
 
-if (nsfw && nsfw !== "" ) {
+if (nsfw && nsfw === "true" ) {
   tstore.package.containsNsfwContent = true
 }
 
 if (categories && categories !== "") {
-  //only keep truthy elements from the split
-  tstore.publish.categories = categories.split(' ').filter(e => e).map(e=> e.toLowerCase());
+  console.log(`::debug::Parsing categories: ${categories}`);
+  tstore.publish.categories = categories.split(',')
+    .filter(e => e) //only keep truthy elements
+    .map(e=> e.toLowerCase().trim());
 }
 
 if (deps && deps !== "") {
