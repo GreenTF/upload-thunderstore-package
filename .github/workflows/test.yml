@@ -43,18 +43,6 @@ jobs:
             tools
             items
       - run: echo ${{ steps.pub.outputs.url }}
-      - uses: actions/checkout@v3
-      - id: pub-prebuilt
-        uses: ./
-        with:
-          namespace: GreenTF
-          name: test-prebuilt
-          version: v0.0.${{github.run_number}}
-          community: test
-          dev: true
-          token: ${{ secrets.TS_KEY }}
-          file: test_zip.zip
-          categories: mods, maps
           
       
       
