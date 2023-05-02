@@ -1,15 +1,11 @@
-FROM ubuntu as setup
-WORKDIR /
-RUN ["apt", "update", "-yy"]
-RUN ["apt", "install", "wget", "-yy"]
-RUN ["wget", "-O", "tcli.tar.gz",  "https://github.com/thunderstore-io/thunderstore-cli/releases/download/0.2.1/tcli-0.2.1-linux-x64.tar.gz"]
-RUN ["tar", "xvf", "tcli.tar.gz"]
-RUN ["mv", "-v", "tcli-0.2.1-linux-x64/tcli", "/bin/tcli"]
-FROM denoland/deno
-RUN ["apt", "update", "-yy"]
-COPY --from=setup /bin/tcli /bin/tcli
+FROM denoland/deno as cache
+ENV DENO_DIR=/var/tmp/deno_cache
+COPY ./cfg_edit.js /cfg_edit.js
+RUN deno cache /cfg_edit.js
+FROM ghcr.io/greentf/tcli
+ENV DENO_DIR=/var/tmp/deno_cache
+COPY --from=cache ${DENO_DIR} ${DENO_DIR}
 COPY ./entrypoint.sh /entrypoint.sh
 COPY ./cfg_edit.js /cfg_edit.js
 RUN ["chmod", "+x", "/entrypoint.sh"]
-RUN ["deno",  "cache", "/cfg_edit.js"]
 ENTRYPOINT ["/entrypoint.sh"]
