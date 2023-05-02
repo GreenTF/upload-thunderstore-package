@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#these are passed in as args to the container so they don't get mangled
+export TS_CATEGORIES="$1"
+export TS_DESC="$2"
+
 function setup() {
   echo "::group::Set up environment"
 
