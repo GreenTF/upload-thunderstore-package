@@ -8,7 +8,7 @@ const name = Deno.env.get("TS_NAME");
 const version = Deno.env.get("TS_VERSION").replace(/v/g, '');
 const desc = Deno.env.get("TS_DESC");
 const homepage = Deno.env.get("TS_WEBSITE");
-const categories = Deno.env.get("TS_CATEGORIES").replace(/\n/g, '');
+const categories = Deno.env.get("TS_CATEGORIES").replace(/\n/g, ','); //support comma and new-line delimiters
 const deps = Deno.env.get("TS_DEPS").replace(/\n/g, ' ');
 const community = Deno.env.get("TS_COMMUNITY");
 const nsfw = Deno.env.get("TS_NSFW");
@@ -39,8 +39,9 @@ if (nsfw && nsfw === "true" ) {
 
 if (categories && categories !== "") {
   console.log(`::debug::Parsing categories: ${categories}`);
-  //only keep truthy elements from the split
-  tstore.publish.categories = categories.split('\n').filter(e => e).map(e=> e.toLowerCase());
+  tstore.publish.categories = categories.split(',')
+    .filter(e => e) //only keep truthy elements
+    .map(e=> e.toLowerCase());
 }
 
 if (deps && deps !== "") {

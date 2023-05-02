@@ -1,6 +1,4 @@
 #!/bin/bash
-
-
 function setup() {
   echo "::group::Set up environment"
 
@@ -53,8 +51,7 @@ function configure(){
     TS_COMMUNITY="test"
   fi
   
-  #these are passed in as args to the container so they don't get mangled
-  echo $(deno run --allow-net --allow-env --allow-read --allow-write cfg_edit.js -- $1 $2)
+  echo $(deno run --allow-net --allow-env --allow-read --allow-write cfg_edit.js)
 
 
   echo "Done config edit"
