@@ -93,9 +93,7 @@ function publish() {
 
 set -e
 setup
-if [ -z "$TS_FILE" ]; then
-  configure
-fi
+configure
 set +e # Turn this off so we can see the output from tcli publish
 publish
 
