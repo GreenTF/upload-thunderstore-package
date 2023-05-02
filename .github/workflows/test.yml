@@ -27,7 +27,7 @@ jobs:
           dev: true
           token: ${{ secrets.TS_KEY }}
           name: test
-          version: 0.${{ github.run_number }}.0
+          version: v0.${{ github.run_number }}.0
           community: test # needs to be test for thunderstore.dev
           wrap: mods
           website: "https://greenboi.me"
@@ -37,6 +37,7 @@ jobs:
             tools
             items
       - run: echo ${{ steps.pub.outputs.url }}
+      - uses: actions/checkout@v3
       - id: pub-prebuilt
         uses: ./
         with:
