@@ -24,7 +24,7 @@ jobs:
     steps:
       # Use checkout to publish the files in your repo
       - uses: actions/checkout@v3
-      - uses: GreenTF/upload-thunderstore-package@v3.1
+      - uses: GreenTF/upload-thunderstore-package@v4
         with:
           namespace: GreenTF # the thunderstore 'team' to publish under
           description: Test 
@@ -34,13 +34,44 @@ jobs:
           community: Northstar
           categories: | # <-- notice this pipe character
             Foo
-            Bar: Baz
+            bar-baz
 
 ```
 
 ## Getting a Thunderstore token
 
 Check the wiki [here](https://github.com/GreenTF/upload-thunderstore-package/wiki#where-to-get-your-thunderstore-token)
+
+## Finding the available categories
+
+Figuring out how to refer to your community's categories can be somewhat confusing. 
+
+To find the categories available to your community, check out `https://thunderstore.io/api/experimental/community/YOUR_COMMUNITY/category/`, which will return a list of categories in a JSON format. Each category will have a `name` value and a `slug` value. The `slug` is the value you need to put in the `categories` list of the action.
+
+### Example
+ 
+```bash
+curl -X GET "https://thunderstore.io/api/experimental/community/northstar/category/" -H  "accept: application/json" | jq # 'jq' is a command line utility that formats JSON
+```
+```json5
+{
+  "pagination": {
+    "next_link": null,
+    "previous_link": null
+  },
+  "results": [
+    {
+      "name": "Models",
+      "slug": "models"
+    },
+    {
+      "name": "Maps",
+      "slug": "maps"
+    },
+    // a bunch of others...
+  ]
+}
+```
 
 
 ## Inputs
