@@ -13,6 +13,7 @@ const deps = Deno.env.get("TS_DEPS").replace(/\n/g, ' ');
 const community = Deno.env.get("TS_COMMUNITY");
 const nsfw = Deno.env.get("TS_NSFW");
 const wrap = Deno.env.get("TS_WRAP");
+const repo = Deno.env.get("TS_REPO");
 
 
 //these should be set already but we're rewriting the whole file anyways
@@ -24,6 +25,8 @@ tstore.package.description = desc;
 tstore.publish.communities = [community];
 tstore.build.copy[0].target = wrap;
 tstore.package.dependencies = {};
+
+tstore.publish.repository = repo | "https://thunderstore.io"
 
 
 //check for optional inputs

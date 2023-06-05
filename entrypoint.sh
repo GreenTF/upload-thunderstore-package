@@ -64,8 +64,10 @@ function configure(){
 function publish() {
   if [ -n "$TS_DEV" ]; then
     repo="https://thunderstore.dev"
-  else
+  elif [ -n "$TS_REPO"]; then
     repo="https://thunderstore.io"
+  else 
+    repo="$TS_REPO"
   fi
 
   # skip the build if there is a prebuilt package provided

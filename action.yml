@@ -44,6 +44,8 @@ inputs:
     description: 'Is the mod NSFW'
   file:
     description: 'Prebuilt .zip file to use, relative to the repo root'
+  repo:
+    description: 'The URL of the thundertore repo to publish to'
 outputs:
   url:
     description: 'URL of uploaded mod'
@@ -67,3 +69,4 @@ runs:
     TS_DEPS: ${{ inputs.deps }}
     TS_NSFW: ${{ inputs.nsfw }}
     TS_FILE: ${{ inputs.file }}
+    TS_REPO: ${{ inputs.repo }}
