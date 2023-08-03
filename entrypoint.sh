@@ -64,7 +64,7 @@ function configure(){
 function publish() {
   if [ -n "$TS_DEV" ]; then
     repo="https://thunderstore.dev"
-  elif [ -n "$TS_REPO"]; then
+  elif [ -n "$TS_REPO" ]; then
     repo="https://thunderstore.io"
   else 
     repo="$TS_REPO"
