@@ -26,7 +26,7 @@ tstore.publish.communities = [community];
 tstore.build.copy[0].target = wrap;
 tstore.package.dependencies = {};
 
-tstore.publish.repository = repo | "https://thunderstore.io"
+tstore.publish.repository = repo ?? "https://thunderstore.io"
 
 
 //check for optional inputs
