@@ -32,6 +32,7 @@ jobs:
           name: test # the name of the package
           version: $GITHUB_REF_NAME # Use the tag as the package version
           community: Northstar
+          repo: northstar.thunderstore.io
           categories: | # <-- notice this pipe character
             Foo
             bar-baz
@@ -80,6 +81,7 @@ curl -X GET "https://thunderstore.io/api/experimental/community/northstar/catego
 | `token` | Service account token from Thunderstore. Should be saved as a repo secret and accessed with `${{ secrets.YOUR_TOKEN_NAME }}` | `true` |
 | `community` | Thunderstore community to publish to. | `true` |
 | `namespace` | Name of the team to publish under. | `true` |
+| `repo` | URL or hostname of the repository to publish to (see [#22](https://github.com/GreenTF/upload-thunderstore-package/issues/22)). | `false` |
 | `name` | Name of the package. | `true` |
 | `description` | Description of the package that will appear on Thunderstore. | `true` |
 | `version` | Package version in SemVer format. | `true` |

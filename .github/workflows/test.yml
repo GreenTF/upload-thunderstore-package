@@ -35,6 +35,7 @@ jobs:
             On your mark, get ready, start.
           version: v0.${{ github.run_number }}.0
           community: test # needs to be test for thunderstore.dev
+          repo: thunderstore.dev
           wrap: mods
           website: "https://greenboi.me"
           categories: |
