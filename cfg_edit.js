@@ -8,11 +8,12 @@ const name = Deno.env.get("TS_NAME");
 const version = Deno.env.get("TS_VERSION").replace(/v/g, '');
 const desc = Deno.env.get("TS_DESC").substring(0, 256); //truncate overlong descriptions
 const homepage = Deno.env.get("TS_WEBSITE");
-const categories = Deno.env.get("TS_CATEGORIES").replace(/\n/g, ','); //support comma and new-line delimiters
+const categories = Deno.env.get("TS_CATEGORIES").replace(/\s/g, ','); //support comma and new-line delimiters
 const deps = Deno.env.get("TS_DEPS").replace(/\n/g, ' ');
 const community = Deno.env.get("TS_COMMUNITY");
 const nsfw = Deno.env.get("TS_NSFW");
 const wrap = Deno.env.get("TS_WRAP");
+const repo = Deno.env.get("TS_REPO");
 
 
 //these should be set already but we're rewriting the whole file anyways
@@ -24,6 +25,8 @@ tstore.package.description = desc;
 tstore.publish.communities = [community];
 tstore.build.copy[0].target = wrap;
 tstore.package.dependencies = {};
+
+tstore.publish.repository = repo ?? "https://thunderstore.io"
 
 
 //check for optional inputs
