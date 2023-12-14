@@ -1,6 +1,7 @@
 FROM denoland/deno
+ARG VERSION=0.2.3
 RUN apt-get update && apt-get install -y wget && rm -rf /var/lib/apt/lists/*
-RUN ["wget", "-O", "tcli.tar.gz",  "https://github.com/thunderstore-io/thunderstore-cli/releases/download/0.2.1/tcli-0.2.1-linux-x64.tar.gz"]
-RUN ["tar", "xvf", "tcli.tar.gz"]
-RUN ["mv", "-v", "tcli-0.2.1-linux-x64/tcli", "/bin/tcli"]
+RUN wget -O tcli.tar.gz https://github.com/thunderstore-io/thunderstore-cli/releases/download/${VERSION}/tcli-${VERSION}-linux-x64.tar.gz
+RUN tar xvf tcli.tar.gz
+RUN mv -v tcli-${VERSION}-linux-x64/tcli /bin/tcli
 ENTRYPOINT ["/bin/bash"]
