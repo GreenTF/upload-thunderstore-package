@@ -2,9 +2,6 @@ name: Test Action
 
 on:
   push:
-    branches:
-      - main
-      - dev
   pull_request:
     branches:
       - main
@@ -34,7 +31,7 @@ jobs:
             The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. 
             On your mark, get ready, start.
           version: v0.${{ github.run_number }}.0
-          community: test # needs to be test for thunderstore.dev
+          community: riskofrain2
           repo: thunderstore.dev
           wrap: mods
           website: "https://greenboi.me"

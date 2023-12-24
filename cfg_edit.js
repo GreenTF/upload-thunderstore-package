@@ -42,7 +42,7 @@ if (nsfw && nsfw === "true" ) {
 
 if (categories && categories !== "") {
   console.log(`::debug::Parsing categories: ${categories}`);
-  tstore.publish.categories = categories.split(',')
+  tstore.publish.categories[community] = categories.split(',')
     .filter(e => e) //only keep truthy elements
     .map(e=> e.toLowerCase().trim());
 }
