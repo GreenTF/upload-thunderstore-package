@@ -46,13 +46,8 @@ function configure(){
   #tcli usage based off of https://github.com/R2Northstar/Northstar/blob/d8ad8f12f8bca1e8de96f5d7163f71997d487218/.github/workflows/build.yml#L132-L192
   echo "Init tcli config"
   tcli init --package-name ${TS_NAME} --package-namespace ${TS_NAMESPACE} --package-version ${TS_VERSION#v}
-
-  if  [ -n "$TS_DEV" ]; then
-    TS_COMMUNITY="test"
-  fi
   
   echo $(deno run --allow-net --allow-env --allow-read --allow-write cfg_edit.js)
-
 
   echo "Done config edit"
   echo
