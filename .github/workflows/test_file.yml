@@ -1,4 +1,4 @@
-name: Test Action
+name: Upload Prebuilt Zip
 
 on:
   push:
@@ -35,7 +35,7 @@ jobs:
             A single lap should be completed each time you hear this sound *ding*. Remember to run in a straight line, and run as long as possible. 
             The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. 
             On your mark, get ready, start.
-          version: v0.${{ github.run_number }}.0
+          version: v1.${{ github.run_number }}.0
           community: riskofrain2
           repo: thunderstore.dev
           wrap: mods
@@ -45,6 +45,8 @@ jobs:
             maps
             tools
             items
+          deps: |
+            GreenTF-Test-0.130.0
           file: ./test.zip
       - run: echo ${{ steps.pub.outputs.url }}
         

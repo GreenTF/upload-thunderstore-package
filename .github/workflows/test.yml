@@ -40,6 +40,8 @@ jobs:
             maps
             tools
             items
+          deps: |
+            GreenTF-test@2708437257.35.1
       - run: echo ${{ steps.pub.outputs.url }}
           
       
