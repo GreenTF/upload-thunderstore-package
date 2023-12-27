@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: create test zip
         run: |
-          apt install zip
+          sudo apt install zip
           echo "{ \"namespace\": \"GreenTF\", \"name\": \"test\", \"description\": \"Test\", \"version_number\": \"1.${{ github.run_number }}.0\",  \"dependencies\": [], \"website_url\": \"https://greenboi.me\" }" >> manifest.json
           zip test.zip ./*
       - id: pub
