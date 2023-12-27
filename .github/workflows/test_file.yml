@@ -1,0 +1,50 @@
+name: Test Action
+
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+  
+
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: create test zip
+        run: |
+          apt install zip
+          echo "{ \"namespace\": \"GreenTF\", \"name\": \"test\", \"description\": \"Test\", \"version_number\": \"1.${{ github.run_number }}.0\",  \"dependencies\": [], \"website_url\": \"https://greenboi.me\" }" >> manifest.json
+          zip test.zip ./*
+      - id: pub
+        uses: ./
+        with:
+          namespace: GreenTF
+          name: Test
+          dev: true
+          token: ${{ secrets.TS_KEY }}
+          description: |
+            The FitnessGram Pacer test is a multistage aerobic capacity test that progressively gets more difficult as it continues. 
+            The 20 meter Pacer test will begin in 30 seconds. 
+            Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal *boop*.
+            A single lap should be completed each time you hear this sound *ding*. Remember to run in a straight line, and run as long as possible. 
+            The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. 
+            On your mark, get ready, start.
+          version: v0.${{ github.run_number }}.0
+          community: riskofrain2
+          repo: thunderstore.dev
+          wrap: mods
+          website: "https://greenboi.me"
+          categories: |
+            mods
+            maps
+            tools
+            items
+          file: ./test.zip
+      - run: echo ${{ steps.pub.outputs.url }}
+        
