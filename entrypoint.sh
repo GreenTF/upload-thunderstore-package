@@ -47,7 +47,7 @@ function configure(){
   echo "Init tcli config"
   tcli init --package-name ${TS_NAME} --package-namespace ${TS_NAMESPACE} --package-version ${TS_VERSION#v}
   
-  echo $(deno run --allow-net --allow-env --allow-read --allow-write cfg_edit.js)
+  deno run --allow-net --allow-env --allow-read --allow-write cfg_edit.js
 
   echo "Done config edit"
   echo
