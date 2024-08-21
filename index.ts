@@ -53,12 +53,13 @@ if(Bun.env.TS_FILE) {
 
 // Move files to where they're expected
 console.log("::group::Set up environment");
-const path = Bun.env.TS_PATH ? p.normalize(Bun.env.TS_PATH) : "./*";
+const path = Bun.env.TS_PATH ? p.normalize(Bun.env.TS_PATH) : p.join(process.cwd(), "*");
 console.log("Moving files from", path, "to /dist");
 
 // Create the dist dir
 await fs.mkdir("/dist");
 Bun.spawnSync(["mv", path, "/dist"]);
+await Bun.spawn(["ls", "/dist"]).exited;
 
 // The readme and icon need to be in the root though
 
