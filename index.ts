@@ -53,7 +53,7 @@ if(Bun.env.TS_FILE) {
 
 // Move files to where they're expected
 console.log("::group::Set up environment");
-const path = p.normalize(Bun.env.TS_PATH ? Bun.env.TS_PATH : "./*");
+const path = Bun.env.TS_PATH ? p.normalize(Bun.env.TS_PATH) : ".";
 console.log("Moving files from", path, "to /dist");
 
 // Create the dist dir
