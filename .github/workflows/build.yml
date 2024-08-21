@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile.tcli --tag ghcr.io/greentf/tcli:latest
+      run: docker build . --file Dockerfile.tcli --tag ghcr.io/greentf/tcli:bun
     - name: Authenticate with GHCR
       if: ${{ github.event_name == 'release' || github.event.inputs.push == 'true' }}
       uses: docker/login-action@v2.1.0
@@ -29,4 +29,4 @@ jobs:
         password: ${{ secrets.GHCR_TOKEN }}
     - name: Push container
       if: ${{ github.event_name == 'release' || github.event.inputs.push == 'true' }}
-      run: docker push ghcr.io/greentf/tcli:latest
+      run: docker push ghcr.io/greentf/tcli:bun
