@@ -49,13 +49,15 @@ const publish = async (target: string, file: string | undefined) => {
   console.log("::endgroup::");
 }
 
-// Skip everything if a prebuilt file is provided
-if(Bun.env.TS_FILE) {
-  console.log("Publishing prebuild file");
+// This doesn't work because the thunderstore.toml needs to be created
+// maybe this should just be a requirement of having a prebuilt file?
+// // Skip everything if a prebuilt file is provided
+// if(Bun.env.TS_FILE) {
+//   console.log("Publishing prebuild file");
 
-  await publish(target_repo, Bun.env.TS_FILE);
-  process.exit(0);
-}
+//   await publish(target_repo, Bun.env.TS_FILE);
+//   process.exit(0);
+// }
 
 
 // Move files to where they're expected
@@ -188,5 +190,5 @@ console.log(`\n${TOML.stringify(tstore)}`);
 console.log("::endgroup::");
 
 // Build and publish package
-await publish(target_repo, undefined);
+await publish(target_repo, Bun.env.TS_FILE);
 
