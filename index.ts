@@ -24,6 +24,7 @@ const moveDirContents = async (from: string, to: string) => {
 
 const publish = async (target: string, file: string | undefined) => {
   console.log("::group::Publish package");
+  console.log(`Publishing with target repoitory '${target}'`)
   const args = file ? ["--file", p.join("/dist", file)] : [];
   const pub = Bun.spawnSync(["tcli", "publish", "--repository", target, ...args], {
     env: {...Bun.env}
@@ -162,9 +163,8 @@ if (categories && categories !== "") {
 if (deps && deps !== "") {
   console.log("::debug::Parsing dependencies: ", deps.split(" "));
   const p: Record<string, string> = {};
-  for (let d of deps.split(" ")) {
+  for (const d of deps.split(" ")) {
     if (!d) {
-      console.log("::warn::Empty dependency", d);
       continue;
     }
 
@@ -178,7 +178,7 @@ if (deps && deps !== "") {
     }
   }
 
-  console.log("::debug:: Built depencendies:", p);
+  console.log("::debug::Built depencendies:", p);
   tstore.package.dependencies = p;
 }
 
