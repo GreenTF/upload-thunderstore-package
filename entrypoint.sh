@@ -1,2 +1,2 @@
 #!/bin/bash
-bun run index.ts
+bun run /index.ts
