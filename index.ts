@@ -24,7 +24,7 @@ const moveDirContents = async (from: string, to: string) => {
 
 const publish = async (target: string, file: string | undefined) => {
   console.log("::group::Publish package");
-  const args = file ? ["--file", file] : [];
+  const args = file ? ["--file", p.join("/dist", file)] : [];
   const pub = Bun.spawnSync(["tcli", "publish", "--repository", target, ...args], {
     env: {...Bun.env}
   });
