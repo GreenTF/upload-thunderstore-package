@@ -15,6 +15,13 @@ const wrap = Bun.env.TS_WRAP;
 const repo = Bun.env.TS_REPO ?? "https://thunderstore.io";
 const target_repo = Bun.env.TS_DEV?.toLowerCase() === "true" ? "https://thunderstore.dev" : repo;
 
+const moveDirContents = async (from: string, to: string) => {
+  const files = await fs.readdir(from);
+  for(const file of files) {
+    Bun.spawnSync(["mv", p.join(from, file), p.join(to, file)]);
+  }
+}
+
 const publish = async (target: string, file: string | undefined) => {
   console.log("::group::Publish package");
   const args = file ? ["--file", file] : [];
@@ -53,11 +60,13 @@ if(Bun.env.TS_FILE) {
 
 // Move files to where they're expected
 console.log("::group::Set up environment");
-const path = Bun.env.TS_PATH ? p.normalize(Bun.env.TS_PATH) : p.join(process.cwd(), "*");
+const path = Bun.env.TS_PATH ? p.normalize(Bun.env.TS_PATH) : process.cwd();
 console.log("Moving files from", path, "to /dist");
 
 // Create the dist dir
 await fs.mkdir("/dist");
+await moveDirContents(path, "/dist");
+
 Bun.spawnSync(["mv", path, "/dist"]);
 await Bun.spawn(["ls", "/dist"]).exited;
 
