@@ -31,10 +31,10 @@ const publish = async (target: string, file: string | undefined) => {
   });
   const out = pub.stdout.toString();
 
-  console.log(out);
   if (pub.exitCode !== 0 || out.toLowerCase().includes("error")) {
     console.log("::error::Tcli encountered an error while publishing");
-    console.log(`::error::${pub.stderr}`);
+    console.log(`::error::${out}`);
+    process.exit(1);
   }
 
   const url = out.match(/https.*/g)?.[0];
