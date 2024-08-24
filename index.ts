@@ -12,7 +12,9 @@ const deps = (Bun.env.TS_DEPS ?? "").replace(/\n/g, " ");
 const community = Bun.env.TS_COMMUNITY;
 const nsfw = Bun.env.TS_NSFW;
 const wrap = Bun.env.TS_WRAP;
-const repo = Bun.env.TS_REPO ?? "https://thunderstore.io";
+// can't use coalescence here because we need to default to thunderstore.io
+// even if TS_REPO is defined but empty
+const repo = Bun.env.TS_REPO ? Bun.env.TS_REPO : "https://thunderstore.io";
 const target_repo = Bun.env.TS_DEV?.toLowerCase() === "true" ? "https://thunderstore.dev" : repo;
 
 const moveDirContents = async (from: string, to: string) => {
