@@ -9,17 +9,14 @@ on:
     branches:
       - main
   workflow_dispatch:
-  
-
 
 jobs:
   test:
-
     runs-on: ubuntu-latest
     strategy:
-      matrix: 
+      matrix:
         repo: ["thunderstore.dev", ""]
-        include: 
+        include:
           - patch: 0
             repo: thunderstore.dev
           - patch: 1
@@ -61,6 +58,16 @@ jobs:
           deps: |
             GreenTF-test@2708437257.35.1
       - run: echo ${{ steps.pub.outputs.url }}
-      - name: Verify package
-        shell: python
-        run: 
+      - name: Verify published package
+        run: python verify.py
+
+  # publish:
+  #   needs: test
+  #   if: github.event_name == 'push'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Create Release
+  #       uses: marvinpinto/action-automatic-releases@latest
+  #       with:
+  #         repo_token: ${{ secrets.GITHUB_TOKEN }}
+  #         prelease: false

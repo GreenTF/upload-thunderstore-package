@@ -6,12 +6,9 @@ on:
     branches:
       - main
   workflow_dispatch:
-  
-
 
 jobs:
-  test:
-
+  test_prebuilt:
     runs-on: ubuntu-latest
 
     steps:
@@ -49,4 +46,3 @@ jobs:
             GreenTF-Test-0.130.0
           file: ./test.zip
       - run: echo ${{ steps.pub.outputs.url }}
-        
