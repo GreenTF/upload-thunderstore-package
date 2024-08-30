@@ -2,6 +2,9 @@ name: Test Action
 
 on:
   push:
+    branches:
+      - main
+      - dev
   pull_request:
     branches:
       - main
@@ -13,10 +16,23 @@ jobs:
   test:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix: 
+        repo: ["thunderstore.dev", ""]
+        include: 
+          - patch: 0
+            repo: thunderstore.dev
+          - patch: 1
+            repo: ""
+          - patch: 3
+            repo: thunderstore.dev
+            readme: "https://raw.githubusercontent.com/GreenTF/upload-thunderstore-package/main/README.md"
+            icon: "https://raw.githubusercontent.com/GreenTF/upload-thunderstore-package/main/icon.png"
 
     steps:
       - uses: actions/checkout@v4
       - id: pub
+        name: test publish
         uses: ./
         with:
           namespace: GreenTF
@@ -30,9 +46,11 @@ jobs:
             A single lap should be completed each time you hear this sound *ding*. Remember to run in a straight line, and run as long as possible. 
             The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. 
             On your mark, get ready, start.
-          version: v0.${{ github.run_number }}.0
+          version: v0.${{ github.run_number }}.${{ matrix.patch }}
           community: riskofrain2
-          repo: thunderstore.dev
+          repo: ${{ matrix.repo }}
+          readme: ${{ matrix.readme }}
+          icon: ${{ matrix.icon }}
           wrap: mods
           website: "https://greenboi.me"
           categories: |
@@ -43,21 +61,6 @@ jobs:
           deps: |
             GreenTF-test@2708437257.35.1
       - run: echo ${{ steps.pub.outputs.url }}
-          
-      
-      
-
-  # publish:
-  #   needs: test
-  #   if: github.event_name == 'push'
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Create Release
-  #       uses: marvinpinto/action-automatic-releases@latest
-  #       with:
-  #         repo_token: ${{ secrets.GITHUB_TOKEN }}
-  #         prelease: false
-        
-
-
-        
+      - name: Verify package
+        shell: python
+        run: 
