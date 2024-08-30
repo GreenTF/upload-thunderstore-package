@@ -14,6 +14,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
+      # thunderstore isn't fond of being DDOS'd
+      max-parallel: 1
       matrix:
         repo: ["thunderstore.dev", ""]
         include:
@@ -59,7 +61,7 @@ jobs:
             GreenTF-test@2708437257.35.1
       - run: echo ${{ steps.pub.outputs.url }}
       - name: Verify published package
-        run: python verify.py
+        run: cd ${{ github.action_path }} && python verify.py
 
   # publish:
   #   needs: test
