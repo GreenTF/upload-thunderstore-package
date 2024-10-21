@@ -34,6 +34,10 @@ function setup() {
     wget -O "/icon.png" "$TS_ICON"
   fi
 
+  if [ -e "/dist/CHANGELOG.md" ]; then
+    echo "Move CHANGELOG"
+    mv "/dist/CHANGELOG.md" "/"
+  fi
 
   echo "::endgroup::"
 
