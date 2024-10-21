@@ -23,6 +23,8 @@ inputs:
     description: 'URL of the mod icon'
   readme:
     description: 'URL of the mod README'
+  changelog:
+    description: 'URL of the mod CHANGELOG'
   description:
     description: 'Description of the mod'
     required: true
@@ -61,6 +63,7 @@ runs:
     TS_DESC: ${{ inputs.description }}
     TS_ICON: ${{ inputs.icon }}
     TS_README: ${{ inputs.readme }}
+    TS_CHANGELOG: ${{ inputs.changelog }}
     TS_PATH: ${{ inputs.path }}
     TS_DEV: ${{ inputs.dev }}
     TS_WRAP: ${{ inputs.wrap }}

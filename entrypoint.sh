@@ -37,6 +37,9 @@ function setup() {
   if [ -e "/dist/CHANGELOG.md" ]; then
     echo "Move CHANGELOG"
     mv "/dist/CHANGELOG.md" "/"
+  elif [ -n "$TS_CHANGELOG" ]; then
+    echo "Download CHANGELOG from $TS_CHANGELOG"
+    wget -O "/CHANGELOG.md" "$TS_CHANGELOG"
   fi
 
   echo "::endgroup::"
