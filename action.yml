@@ -48,6 +48,7 @@ inputs:
     description: 'Prebuilt .zip file to use, relative to the repo root'
   repo:
     description: 'The URL of the thundertore repo to publish to'
+    default: 'thunderstore.io'
 outputs:
   url:
     description: 'URL of uploaded mod'
